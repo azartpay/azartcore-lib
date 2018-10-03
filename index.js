@@ -1,69 +1,70 @@
 'use strict';
 
-var bitcore = module.exports;
+var azartcore = module.exports;
 
 // module information
-bitcore.version = 'v' + require('./package.json').version;
-bitcore.versionGuard = function(version) {
+azartcore.version = 'v' + require('./package.json').version;
+azartcore.versionGuard = function(version) { return;
   if (version !== undefined) {
-    var message = 'More than one instance of bitcore-lib found. ' +
-      'Please make sure to require bitcore-lib and check that submodules do' +
-      ' not also include their own bitcore-lib dependency.';
+    var message = 'More than one instance of azartcore-lib found. ' +
+      'Please make sure to require azartcore-lib and check that submodules do' +
+      ' not also include their own azartcore-lib dependency.';
     throw new Error(message);
   }
 };
-bitcore.versionGuard(global._bitcore);
-global._bitcore = bitcore.version;
+azartcore.versionGuard(global._azartcore);
+global._azartcore = azartcore.version;
 
 // crypto
-bitcore.crypto = {};
-bitcore.crypto.BN = require('./lib/crypto/bn');
-bitcore.crypto.ECDSA = require('./lib/crypto/ecdsa');
-bitcore.crypto.Hash = require('./lib/crypto/hash');
-bitcore.crypto.Random = require('./lib/crypto/random');
-bitcore.crypto.Point = require('./lib/crypto/point');
-bitcore.crypto.Signature = require('./lib/crypto/signature');
+azartcore.crypto = {};
+azartcore.crypto.BN = require('./lib/crypto/bn');
+azartcore.crypto.ECDSA = require('./lib/crypto/ecdsa');
+azartcore.crypto.Hash = require('./lib/crypto/hash');
+azartcore.crypto.Random = require('./lib/crypto/random');
+azartcore.crypto.Point = require('./lib/crypto/point');
+azartcore.crypto.Signature = require('./lib/crypto/signature');
 
 // encoding
-bitcore.encoding = {};
-bitcore.encoding.Base58 = require('./lib/encoding/base58');
-bitcore.encoding.Base58Check = require('./lib/encoding/base58check');
-bitcore.encoding.BufferReader = require('./lib/encoding/bufferreader');
-bitcore.encoding.BufferWriter = require('./lib/encoding/bufferwriter');
-bitcore.encoding.Varint = require('./lib/encoding/varint');
+azartcore.encoding = {};
+azartcore.encoding.Base58 = require('./lib/encoding/base58');
+azartcore.encoding.Base58Check = require('./lib/encoding/base58check');
+azartcore.encoding.BufferReader = require('./lib/encoding/bufferreader');
+azartcore.encoding.BufferWriter = require('./lib/encoding/bufferwriter');
+azartcore.encoding.Varint = require('./lib/encoding/varint');
 
 // utilities
-bitcore.util = {};
-bitcore.util.buffer = require('./lib/util/buffer');
-bitcore.util.js = require('./lib/util/js');
-bitcore.util.preconditions = require('./lib/util/preconditions');
+azartcore.util = {};
+azartcore.util.buffer = require('./lib/util/buffer');
+azartcore.util.js = require('./lib/util/js');
+azartcore.util.preconditions = require('./lib/util/preconditions');
 
 // errors thrown by the library
-bitcore.errors = require('./lib/errors');
+azartcore.errors = require('./lib/errors');
 
-// main bitcoin library
-bitcore.Address = require('./lib/address');
-bitcore.Block = require('./lib/block');
-bitcore.MerkleBlock = require('./lib/block/merkleblock');
-bitcore.BlockHeader = require('./lib/block/blockheader');
-bitcore.HDPrivateKey = require('./lib/hdprivatekey.js');
-bitcore.HDPublicKey = require('./lib/hdpublickey.js');
-bitcore.Networks = require('./lib/networks');
-bitcore.Opcode = require('./lib/opcode');
-bitcore.PrivateKey = require('./lib/privatekey');
-bitcore.PublicKey = require('./lib/publickey');
-bitcore.Script = require('./lib/script');
-bitcore.Transaction = require('./lib/transaction');
-bitcore.URI = require('./lib/uri');
-bitcore.Unit = require('./lib/unit');
+// main azart library
+azartcore.Address = require('./lib/address');
+azartcore.Block = require('./lib/block');
+azartcore.MerkleBlock = require('./lib/block/merkleblock');
+azartcore.BlockHeader = require('./lib/block/blockheader');
+azartcore.HDPrivateKey = require('./lib/hdprivatekey.js');
+azartcore.HDPublicKey = require('./lib/hdpublickey.js');
+azartcore.Networks = require('./lib/networks');
+azartcore.Opcode = require('./lib/opcode');
+azartcore.PrivateKey = require('./lib/privatekey');
+azartcore.PublicKey = require('./lib/publickey');
+azartcore.Script = require('./lib/script');
+azartcore.Transaction = require('./lib/transaction');
+azartcore.GovObject = require('./lib/govobject');
+azartcore.URI = require('./lib/uri');
+azartcore.Unit = require('./lib/unit');
 
 // dependencies, subject to change
-bitcore.deps = {};
-bitcore.deps.bnjs = require('bn.js');
-bitcore.deps.bs58 = require('bs58');
-bitcore.deps.Buffer = Buffer;
-bitcore.deps.elliptic = require('elliptic');
-bitcore.deps._ = require('lodash');
+azartcore.deps = {};
+azartcore.deps.bnjs = require('bn.js');
+azartcore.deps.bs58 = require('bs58');
+azartcore.deps.Buffer = Buffer;
+azartcore.deps.elliptic = require('elliptic');
+azartcore.deps._ = require('lodash');
 
 // Internal usage, exposed for testing/advanced tweaking
-bitcore.Transaction.sighash = require('./lib/transaction/sighash');
+azartcore.Transaction.sighash = require('./lib/transaction/sighash');

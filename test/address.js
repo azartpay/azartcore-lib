@@ -6,14 +6,14 @@ var chai = require('chai');
 var should = chai.should();
 var expect = chai.expect;
 
-var bitcore = require('..');
-var PublicKey = bitcore.PublicKey;
-var Address = bitcore.Address;
-var Script = bitcore.Script;
-var Networks = bitcore.Networks;
+var azartcore = require('..');
+var PublicKey = azartcore.PublicKey;
+var Address = azartcore.Address;
+var Script = azartcore.Script;
+var Networks = azartcore.Networks;
 
-var validbase58 = require('./data/bitcoind/base58_keys_valid.json');
-var invalidbase58 = require('./data/bitcoind/base58_keys_invalid.json');
+var validbase58 = require('./data/azartd/base58_keys_valid.json');
+var invalidbase58 = require('./data/azartd/base58_keys_invalid.json');
 
 describe('Address', function() {
 
@@ -39,7 +39,7 @@ describe('Address', function() {
     }).should.throw('Third argument must be "pubkeyhash" or "scripthash"');
   });
 
-  describe('bitcoind compliance', function() {
+  describe('azartd compliance', function() {
     validbase58.map(function(d) {
       if (!d[2].isPrivkey) {
         it('should describe address ' + d[0] + ' as valid', function() {
@@ -259,7 +259,7 @@ describe('Address', function() {
     it('should error because of unrecognized data format', function() {
       (function() {
         return new Address(new Error());
-      }).should.throw(bitcore.errors.InvalidArgument);
+      }).should.throw(azartcore.errors.InvalidArgument);
     });
 
     it('should error because of incorrect format for pubkey hash', function() {
@@ -462,7 +462,7 @@ describe('Address', function() {
     it('will fail with invalid state', function() {
       expect(function() {
         return Address.fromObject('¹');
-      }).to.throw(bitcore.errors.InvalidState);
+      }).to.throw(azartcore.errors.InvalidState);
     });
   });
 

@@ -3,13 +3,13 @@
 var should = require('chai').should();
 var expect = require('chai').expect;
 
-var bitcore = require('..');
-var Point = bitcore.crypto.Point;
-var BN = bitcore.crypto.BN;
-var PublicKey = bitcore.PublicKey;
-var PrivateKey = bitcore.PrivateKey;
-var Address = bitcore.Address;
-var Networks = bitcore.Networks;
+var azartcore = require('..');
+var Point = azartcore.crypto.Point;
+var BN = azartcore.crypto.BN;
+var PublicKey = azartcore.PublicKey;
+var PrivateKey = azartcore.PrivateKey;
+var Address = azartcore.Address;
+var Networks = azartcore.Networks;
 
 /* jshint maxlen: 200 */
 
@@ -351,7 +351,7 @@ describe('PublicKey', function() {
   describe('hashes', function() {
 
     // wif private key, address
-    // see: https://github.com/bitcoin/bitcoin/blob/master/src/test/key_tests.cpp#L20
+    // see: https://github.com/azart/azart/blob/master/src/test/key_tests.cpp#L20
     var data = [
       ['5HxWvvfubhXpYYpS3tJkw6fq9jE9j18THftkZjHHfmFiWtmAbrj', '1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ'],
       ['5KC4ejrDjv152FGwP386VD1i2NYc5KkfSMyv1nGy1VGDxGHqVY3', '1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ'],

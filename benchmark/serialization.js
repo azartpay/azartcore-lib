@@ -1,8 +1,8 @@
 'use strict';
 
 var benchmark = require('benchmark');
-var bitcore = require('..');
-var bitcoinjs = require('bitcoinjs-lib');
+var azartcore = require('..');
+var azartjs = require('azartjs-lib');
 var bcoin = require('bcoin');
 var async = require('async');
 var fullnode = require('fullnode');
@@ -22,13 +22,13 @@ async.series([
     for (var i = 0; i < 100; i++) {
 
       // uint64le
-      var br = new bitcore.encoding.BufferWriter();
+      var br = new azartcore.encoding.BufferWriter();
       var num = Math.round(Math.random() * 10000000000000);
-      br.writeUInt64LEBN(new bitcore.crypto.BN(num));
+      br.writeUInt64LEBN(new azartcore.crypto.BN(num));
       buffers.push(br.toBuffer());
 
       // hashes
-      var data = bitcore.crypto.Hash.sha256sha256(new Buffer(32));
+      var data = azartcore.crypto.Hash.sha256sha256(new Buffer(32));
       hashBuffers.push(data);
     }
 
@@ -40,7 +40,7 @@ async.series([
         c = 0;
       }
       var buf = buffers[c];
-      var br = new bitcore.encoding.BufferReader(buf);
+      var br = new azartcore.encoding.BufferReader(buf);
       bn = br.readUInt64LEBN();
       c++;
     }
@@ -52,7 +52,7 @@ async.series([
         c = 0;
       }
       var buf = hashBuffers[c];
-      var br = new bitcore.encoding.BufferReader(buf);
+      var br = new azartcore.encoding.BufferReader(buf);
       reversed = br.readReverse();
       c++;
     }
@@ -79,12 +79,12 @@ async.series([
     var block2;
     var block3;
 
-    function bitcoreTest() {
-      block1 = bitcore.Block.fromString(blockData);
+    function azartcoreTest() {
+      block1 = azartcore.Block.fromString(blockData);
     }
 
-    function bitcoinJSTest() {
-      block2 = bitcoinjs.Block.fromHex(blockData);
+    function azartJSTest() {
+      block2 = azartjs.Block.fromHex(blockData);
     }
 
     var parser = new bcoin.protocol.parser();
@@ -102,8 +102,8 @@ async.series([
     }
 
     var suite = new benchmark.Suite();
-    suite.add('bitcore', bitcoreTest, {maxTime: maxTime});
-    suite.add('bitcoinjs', bitcoinJSTest, {maxTime: maxTime});
+    suite.add('azartcore', azartcoreTest, {maxTime: maxTime});
+    suite.add('azartjs', azartJSTest, {maxTime: maxTime});
     suite.add('bcoin', bcoinTest, {maxTime: maxTime});
     suite.add('fullnode', fullnodeTest, {maxTime: maxTime});
     suite

@@ -1,5 +1,5 @@
 
 
-var bitcoreTasks = require('bitcore-build');
+var azartcoreTasks = require('azartcore-build');
 
-bitcoreTasks('lib');
+azartcoreTasks('lib');
